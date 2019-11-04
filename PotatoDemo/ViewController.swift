@@ -11,7 +11,7 @@ import UIKit
 class ViewController: UIViewController {
 
     var dataItems: [String] {
-        return ["PresentTransition", "NavigationTransition", "WaterFallLayout", "CartoonView", "layerAnimation(手指左右滑动)", "DrawBoard", "CarouselView", "MenuView"]
+        return ["PresentTransition", "NavigationTransition", "WaterFallLayout", "CartoonView", "layerAnimation(手指左右滑动)", "DrawBoard", "CarouselView", "MenuView", "PageViewController"]
     }
     
     override func viewDidLoad() {
@@ -59,6 +59,10 @@ extension ViewController: UITableViewDelegate {
             self.navigationController?.pushViewController(vc, animated: true)
         case 7:
             let vc = MenuViewController()
+            self.navigationController?.pushViewController(vc, animated: true)
+        case 8:
+            let titles = ["语文", "数学", "英语", "物理", "化学", "生物", "历史", "政治", "地理", "计算机", "画画", "音乐", "体育"]
+            let vc = PoPageViewController(titles: titles, viewControllerType: PageViewController.self)
             self.navigationController?.pushViewController(vc, animated: true)
         default:
             print("nothing")

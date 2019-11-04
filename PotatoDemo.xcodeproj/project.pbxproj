@@ -15,7 +15,7 @@
 		5BC122E22238AA2800953C61 /* PoPresentOrDismissAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC122D72238AA2800953C61 /* PoPresentOrDismissAnimator.swift */; };
 		5BC122E32238AA2800953C61 /* PresentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC122D82238AA2800953C61 /* PresentViewController.swift */; };
 		5BC122E42238AA2800953C61 /* DismissViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC122D92238AA2800953C61 /* DismissViewController.swift */; };
-		5BC122E52238AA2800953C61 /* PoSideMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC122DB2238AA2800953C61 /* PoSideMenuController.swift */; };
+		5BC122E52238AA2800953C61 /* PoSideMenuController1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC122DB2238AA2800953C61 /* PoSideMenuController1.swift */; };
 		5BC122E62238AA2800953C61 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC122DD2238AA2800953C61 /* FirstViewController.swift */; };
 		5BC122E72238AA2800953C61 /* NavigationControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC122DE2238AA2800953C61 /* NavigationControllerDelegate.swift */; };
 		5BC122E82238AA2800953C61 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC122DF2238AA2800953C61 /* SecondViewController.swift */; };
@@ -128,6 +128,16 @@
 		5BC123D4223B714600953C61 /* PoMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC123D3223B714600953C61 /* PoMenuView.swift */; };
 		5BC123D6223B75CD00953C61 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC123D5223B75CD00953C61 /* MenuViewController.swift */; };
 		5BC123D8223B76E300953C61 /* classify_icon_switch@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BC123D7223B76E300953C61 /* classify_icon_switch@2x.png */; };
+		5BF0DE8D22C85BC0006686AF /* PoPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF0DE8C22C85BC0006686AF /* PoPageViewController.swift */; };
+		5BF0DE8F22C866AB006686AF /* PoSegementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF0DE8E22C866AB006686AF /* PoSegementView.swift */; };
+		5BF0DE9122C8A70B006686AF /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF0DE9022C8A70B006686AF /* PageViewController.swift */; };
+		6CF770322351B98000B9055A /* PoSideMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CF770312351B98000B9055A /* PoSideMenuController.swift */; };
+		924E1AB8233076A00036DB4F /* PoNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924E1AB7233076A00036DB4F /* PoNavigationController.swift */; };
+		924E1ABF2330D5FD0036DB4F /* KLTNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 924E1ABC2330D5FD0036DB4F /* KLTNavigationController.m */; };
+		924E1AC02330D5FD0036DB4F /* AnimationContoller.m in Sources */ = {isa = PBXBuildFile; fileRef = 924E1ABE2330D5FD0036DB4F /* AnimationContoller.m */; };
+		924E1AC22330D8610036DB4F /* PoNavigationAnimator1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924E1AC12330D8610036DB4F /* PoNavigationAnimator1.swift */; };
+		92C3F99A232F676A00847E18 /* PoNavigationController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C3F999232F676A00847E18 /* PoNavigationController2.swift */; };
+		92C3F99C232F790B00847E18 /* PoNavigationAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C3F99B232F790B00847E18 /* PoNavigationAnimator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -141,7 +151,7 @@
 		5BC122D72238AA2800953C61 /* PoPresentOrDismissAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PoPresentOrDismissAnimator.swift; sourceTree = "<group>"; };
 		5BC122D82238AA2800953C61 /* PresentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentViewController.swift; sourceTree = "<group>"; };
 		5BC122D92238AA2800953C61 /* DismissViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DismissViewController.swift; sourceTree = "<group>"; };
-		5BC122DB2238AA2800953C61 /* PoSideMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PoSideMenuController.swift; sourceTree = "<group>"; };
+		5BC122DB2238AA2800953C61 /* PoSideMenuController1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PoSideMenuController1.swift; sourceTree = "<group>"; };
 		5BC122DD2238AA2800953C61 /* FirstViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
 		5BC122DE2238AA2800953C61 /* NavigationControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationControllerDelegate.swift; sourceTree = "<group>"; };
 		5BC122DF2238AA2800953C61 /* SecondViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
@@ -255,6 +265,19 @@
 		5BC123D3223B714600953C61 /* PoMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoMenuView.swift; sourceTree = "<group>"; };
 		5BC123D5223B75CD00953C61 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		5BC123D7223B76E300953C61 /* classify_icon_switch@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "classify_icon_switch@2x.png"; sourceTree = "<group>"; };
+		5BF0DE8C22C85BC0006686AF /* PoPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoPageViewController.swift; sourceTree = "<group>"; };
+		5BF0DE8E22C866AB006686AF /* PoSegementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoSegementView.swift; sourceTree = "<group>"; };
+		5BF0DE9022C8A70B006686AF /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
+		6CF770312351B98000B9055A /* PoSideMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PoSideMenuController.swift; sourceTree = "<group>"; };
+		924E1AB7233076A00036DB4F /* PoNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoNavigationController.swift; sourceTree = "<group>"; };
+		924E1AB92330D5990036DB4F /* PotatoDemo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PotatoDemo-Bridging-Header.h"; sourceTree = "<group>"; };
+		924E1ABB2330D5FD0036DB4F /* AnimationContoller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationContoller.h; sourceTree = "<group>"; };
+		924E1ABC2330D5FD0036DB4F /* KLTNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KLTNavigationController.m; sourceTree = "<group>"; };
+		924E1ABD2330D5FD0036DB4F /* KLTNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KLTNavigationController.h; sourceTree = "<group>"; };
+		924E1ABE2330D5FD0036DB4F /* AnimationContoller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnimationContoller.m; sourceTree = "<group>"; };
+		924E1AC12330D8610036DB4F /* PoNavigationAnimator1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoNavigationAnimator1.swift; sourceTree = "<group>"; };
+		92C3F999232F676A00847E18 /* PoNavigationController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoNavigationController2.swift; sourceTree = "<group>"; };
+		92C3F99B232F790B00847E18 /* PoNavigationAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoNavigationAnimator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -298,11 +321,13 @@
 				5BC1235F223A93A300953C61 /* DrawBoardView */,
 				5BC12366223B3A2D00953C61 /* CarouselView */,
 				5BC123D2223B712C00953C61 /* MenuView */,
+				5BF0DE8B22C85B9B006686AF /* PageViewController */,
 				5BC12369223B417500953C61 /* Vendors */,
 				5BC122C82238A9C500953C61 /* Main.storyboard */,
 				5BC122CB2238A9C600953C61 /* Assets.xcassets */,
 				5BC122CD2238A9C600953C61 /* LaunchScreen.storyboard */,
 				5BC122D02238A9C600953C61 /* Info.plist */,
+				924E1AB92330D5990036DB4F /* PotatoDemo-Bridging-Header.h */,
 			);
 			path = PotatoDemo;
 			sourceTree = "<group>";
@@ -320,7 +345,8 @@
 		5BC122DA2238AA2800953C61 /* SideMenuController */ = {
 			isa = PBXGroup;
 			children = (
-				5BC122DB2238AA2800953C61 /* PoSideMenuController.swift */,
+				6CF770312351B98000B9055A /* PoSideMenuController.swift */,
+				5BC122DB2238AA2800953C61 /* PoSideMenuController1.swift */,
 			);
 			path = SideMenuController;
 			sourceTree = "<group>";
@@ -442,6 +468,8 @@
 		5BC12369223B417500953C61 /* Vendors */ = {
 			isa = PBXGroup;
 			children = (
+				924E1ABA2330D5FD0036DB4F /* KLTAnimateNav */,
+				92C3F99D232F88DF00847E18 /* PoNavigationController */,
 				5BC1236A223B418500953C61 /* Kingfisher */,
 			);
 			path = Vendors;
@@ -574,6 +602,38 @@
 			path = MenuView;
 			sourceTree = "<group>";
 		};
+		5BF0DE8B22C85B9B006686AF /* PageViewController */ = {
+			isa = PBXGroup;
+			children = (
+				5BF0DE8C22C85BC0006686AF /* PoPageViewController.swift */,
+				5BF0DE8E22C866AB006686AF /* PoSegementView.swift */,
+				5BF0DE9022C8A70B006686AF /* PageViewController.swift */,
+			);
+			path = PageViewController;
+			sourceTree = "<group>";
+		};
+		924E1ABA2330D5FD0036DB4F /* KLTAnimateNav */ = {
+			isa = PBXGroup;
+			children = (
+				924E1ABD2330D5FD0036DB4F /* KLTNavigationController.h */,
+				924E1ABC2330D5FD0036DB4F /* KLTNavigationController.m */,
+				924E1ABB2330D5FD0036DB4F /* AnimationContoller.h */,
+				924E1ABE2330D5FD0036DB4F /* AnimationContoller.m */,
+			);
+			path = KLTAnimateNav;
+			sourceTree = "<group>";
+		};
+		92C3F99D232F88DF00847E18 /* PoNavigationController */ = {
+			isa = PBXGroup;
+			children = (
+				92C3F999232F676A00847E18 /* PoNavigationController2.swift */,
+				924E1AC12330D8610036DB4F /* PoNavigationAnimator1.swift */,
+				92C3F99B232F790B00847E18 /* PoNavigationAnimator.swift */,
+				924E1AB7233076A00036DB4F /* PoNavigationController.swift */,
+			);
+			path = PoNavigationController;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -691,6 +751,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				924E1AB8233076A00036DB4F /* PoNavigationController.swift in Sources */,
 				5BC123C9223B418600953C61 /* CallbackQueue.swift in Sources */,
 				5BC123B1223B418500953C61 /* RequestModifier.swift in Sources */,
 				5BC122F122394E4D00953C61 /* WaterFallCell.swift in Sources */,
@@ -710,13 +771,15 @@
 				5BC123A6223B418500953C61 /* CacheSerializer.swift in Sources */,
 				5BC123C8223B418600953C61 /* Runtime.swift in Sources */,
 				5BC123AD223B418500953C61 /* KingfisherManager.swift in Sources */,
+				6CF770322351B98000B9055A /* PoSideMenuController.swift in Sources */,
 				5BC123CB223B418600953C61 /* ExtensionHelpers.swift in Sources */,
 				5BC123BC223B418600953C61 /* ImageDrawing.swift in Sources */,
 				5BC123B0223B418500953C61 /* ImageDownloaderDelegate.swift in Sources */,
 				5BC123CA223B418600953C61 /* Delegate.swift in Sources */,
 				5BC12365223A97DB00953C61 /* DrawViewController.swift in Sources */,
 				5BC1232A2239EDA800953C61 /* PoCartoonViewCell.swift in Sources */,
-				5BC122E52238AA2800953C61 /* PoSideMenuController.swift in Sources */,
+				5BC122E52238AA2800953C61 /* PoSideMenuController1.swift in Sources */,
+				92C3F99A232F676A00847E18 /* PoNavigationController2.swift in Sources */,
 				5BC123CC223B418600953C61 /* Result.swift in Sources */,
 				5BC12362223A93A300953C61 /* PoDrawBoardView.swift in Sources */,
 				5BC122E92238AA2800953C61 /* PushOrPopAnimator.swift in Sources */,
@@ -727,6 +790,7 @@
 				5BC123A2223B418500953C61 /* Storage.swift in Sources */,
 				5BC123B4223B418500953C61 /* RedirectHandler.swift in Sources */,
 				5BC123BF223B418600953C61 /* Filter.swift in Sources */,
+				5BF0DE9122C8A70B006686AF /* PageViewController.swift in Sources */,
 				5BC123B7223B418500953C61 /* ImageModifier.swift in Sources */,
 				5BC123CE223B418600953C61 /* Box.swift in Sources */,
 				5BC123CF223B418600953C61 /* String+MD5.swift in Sources */,
@@ -744,17 +808,23 @@
 				5BC122E72238AA2800953C61 /* NavigationControllerDelegate.swift in Sources */,
 				5BC123C2223B418600953C61 /* ImageView+Kingfisher.swift in Sources */,
 				5BC123D1223B4BF000953C61 /* CarouselViewController.swift in Sources */,
+				92C3F99C232F790B00847E18 /* PoNavigationAnimator.swift in Sources */,
 				5BC123A8223B418500953C61 /* Kingfisher.swift in Sources */,
 				5BC12368223B3A4900953C61 /* PoCarouselView.swift in Sources */,
+				924E1ABF2330D5FD0036DB4F /* KLTNavigationController.m in Sources */,
 				5BC122EF2238E80500953C61 /* WaterFallViewController.swift in Sources */,
 				5BC123C0223B418600953C61 /* Placeholder.swift in Sources */,
 				5BC123B6223B418500953C61 /* AuthenticationChallengeResponsable.swift in Sources */,
 				5BC123CD223B418600953C61 /* SizeExtensions.swift in Sources */,
+				5BF0DE8F22C866AB006686AF /* PoSegementView.swift in Sources */,
+				924E1AC02330D5FD0036DB4F /* AnimationContoller.m in Sources */,
 				5BC122E32238AA2800953C61 /* PresentViewController.swift in Sources */,
 				5BC122F322394E6700953C61 /* WaterFallHeader.swift in Sources */,
+				5BF0DE8D22C85BC0006686AF /* PoPageViewController.swift in Sources */,
 				5BC123C1223B418600953C61 /* GIFAnimatedImage.swift in Sources */,
 				5BC123AA223B418500953C61 /* Source.swift in Sources */,
 				5BC123AE223B418500953C61 /* Deprecated.swift in Sources */,
+				924E1AC22330D8610036DB4F /* PoNavigationAnimator1.swift in Sources */,
 				5BC122E22238AA2800953C61 /* PoPresentOrDismissAnimator.swift in Sources */,
 				5BC1235E223A861A00953C61 /* LayerAnimationViewController.swift in Sources */,
 				5BC122ED2238E70D00953C61 /* PoCollectionViewMasonryLayout.swift in Sources */,
@@ -920,6 +990,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.hzs.PotatoDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(PRODUCT_NAME)/$(PRODUCT_NAME)-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -941,6 +1012,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.hzs.PotatoDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(PRODUCT_NAME)/$(PRODUCT_NAME)-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

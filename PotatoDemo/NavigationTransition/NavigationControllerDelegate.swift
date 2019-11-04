@@ -29,7 +29,7 @@ class NavigationControllerDelegate: NSObject, UINavigationControllerDelegate, UI
         let view = navigationController.view
         let translation = gesture.translation(in: view).x
         let width = view?.bounds.size.width
-        let percent = max(translation/width!, 0.0)
+        let percent = max(translation / width!, 0.0)
         switch gesture.state {
         case .began:
             interactiveTransition = UIPercentDrivenInteractiveTransition()

@@ -21,17 +21,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.backgroundColor = UIColor.white
         
         let vc = ViewController()
-        let center = NavigationController(rootViewController: vc)
-        
+        let center = PoNavigationController(rootViewController: vc)
+//
+//        let vc1 = ViewController()
+//        let nav = PoNavigationController(rootViewController: vc1)
+//
+//        let root = UITabBarController()
+//        root.setViewControllers([center, nav], animated: false)
+//
         let left = UIViewController()
         left.view.backgroundColor = UIColor.red
-        
+
         let right = UIViewController()
         right.view.backgroundColor = UIColor.yellow
-        
-        let sliderController = PoSideMenuController(center: center, left: left, right: right)
-        sliderController.scaleEnable = true
-        sliderController.sideMovable = true
+
+        let sliderController = PoSideMenuController(center: center, left: left)
         
         window?.rootViewController = sliderController
         window?.makeKeyAndVisible()
