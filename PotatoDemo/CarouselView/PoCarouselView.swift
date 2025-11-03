@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol PoCarouselViewDelegate: class {
+protocol PoCarouselViewDelegate: AnyObject {
     func carouselView(_ view: PoCarouselView, tapAt index: Int)
 }
 
@@ -124,9 +124,9 @@ class PoCarouselView: UIView, UIScrollViewDelegate {
     }
     
     func updateImages(by index: Int) {
-        middleImageView.kf.setImage(with: URL(string: urlStrings[index]), placeholder: placeholder)
-        leftImageView.kf.setImage(with: URL(string: urlStrings[(index - 1 + itemCount) % itemCount]), placeholder: placeholder)
-        rightImageView.kf.setImage(with: URL(string: urlStrings[(index + 1) % itemCount]), placeholder: placeholder)
+//        middleImageView.kf.setImage(with: URL(string: urlStrings[index]), placeholder: placeholder)
+//        leftImageView.kf.setImage(with: URL(string: urlStrings[(index - 1 + itemCount) % itemCount]), placeholder: placeholder)
+//        rightImageView.kf.setImage(with: URL(string: urlStrings[(index + 1) % itemCount]), placeholder: placeholder)
         
         if realCount == 1 {
             pageControl.currentPage = 0

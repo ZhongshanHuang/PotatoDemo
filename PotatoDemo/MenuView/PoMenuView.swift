@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol PoMenuViewDelegate: class {
+protocol PoMenuViewDelegate: AnyObject {
     func menuView(_ view: PoMenuView, fromIndex: Int, toIndex: Int)
 }
 

@@ -9,7 +9,7 @@
 import UIKit
 
 // MARK: - PoSegementViewDelegate
-protocol PoSegementViewDelegate: class {
+protocol PoSegementViewDelegate: AnyObject {
     func segementView(_ segementView: PoSegementView, fromIndex: Int, toIndex: Int)
 }
 
