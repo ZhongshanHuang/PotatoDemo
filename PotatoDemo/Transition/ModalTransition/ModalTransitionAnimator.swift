@@ -3,10 +3,29 @@ import UIKit
 public protocol ModalTransitionAnimationConfig {
     var duration: TimeInterval { get }
     var auxAnimation: ((Bool) -> Void)? { get }
-    var onDismissed: (() -> Void)? { get }
-    var onPresented: (() -> Void)? { get }
+    var onCompletion: ((Bool) -> Void)? { get }
     func layout(presenting: Bool, modalView: UIView, in container: UIView)
     func animate(presenting: Bool, modalView: UIView, in container: UIView)
+}
+
+extension ModalTransitionAnimationConfig {
+    var duration: TimeInterval { 0.3 }
+    var auxAnimation: ((Bool) -> Void)? { nil }
+    var onCompletion: ((Bool) -> Void)? { nil }
+    func layout(presenting: Bool, modalView: UIView, in container: UIView) {
+        if presenting {
+            container.addSubview(modalView)
+            modalView.transform = .identity.translatedBy(x: 0, y: modalView.bounds.height)
+        }
+    }
+    
+    func animate(presenting: Bool, modalView: UIView, in container: UIView) {
+        if presenting {
+            modalView.transform = .identity
+        } else {
+            modalView.transform = .identity.translatedBy(x: 0, y: modalView.bounds.height)
+        }
+    }
 }
 
 final class ModalTransitionAnimator: NSObject {
@@ -24,47 +43,35 @@ extension ModalTransitionAnimator: UIViewControllerAnimatedTransitioning {
     }
     
     public func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
-        transitionAnimator(using: transitionContext).startAnimation()
-    }
-    
-    public func interruptibleAnimator(using transitionContext: UIViewControllerContextTransitioning) -> UIViewImplicitlyAnimating {
-        return transitionAnimator(using: transitionContext)
-    }
-    
-    private func transitionAnimator(using transitionContext: UIViewControllerContextTransitioning) -> UIViewImplicitlyAnimating {
         guard let fromViewController = transitionContext.viewController(forKey: .from),
             let toViewController = transitionContext.viewController(forKey: .to) else {
-            return UIViewPropertyAnimator(duration: config.duration, dampingRatio: 0.8)
+            return
         }
 
         let containerView = transitionContext.containerView
-        let isPresenting = !toViewController.isBeingDismissed
-
+        let isPresenting = (toViewController.presentingViewController === fromViewController)
+        
+        let fromFrame = transitionContext.initialFrame(for: fromViewController)
+        let toFrame = transitionContext.finalFrame(for: toViewController)
+        print(fromFrame, toFrame)
+//        fromView.frame = fromFrame
+//        toView.frame = toFrame
+        
         let modalView: UIView = isPresenting ? toViewController.view : fromViewController.view
+        if isPresenting {
+            modalView.frame = toFrame
+        }
         config.layout(presenting: isPresenting, modalView: modalView, in: containerView)
 
         let duration = transitionDuration(using: transitionContext)
-        let animator = UIViewPropertyAnimator(duration: duration, dampingRatio: 0.8)
-        animator.isUserInteractionEnabled = true
-         
-        animator.addAnimations {
+        UIView.animate(withDuration: duration, delay: 0, options: .curveLinear) {
             self.config.animate(presenting: isPresenting, modalView: modalView, in: containerView)
-        }
-
-        animator.addCompletion { position in
-            switch position {
-            case .end:
-                transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
-                if isPresenting {
-                    self.config.onPresented?()
-                } else {
-                    self.config.onDismissed?()
-                }
-            default:
-                self.config.animate(presenting: !isPresenting, modalView: modalView, in: containerView)
-                transitionContext.completeTransition(false)
+        } completion: { _ in
+            let complete = !transitionContext.transitionWasCancelled
+            transitionContext.completeTransition(complete)
+            if complete {
+                self.config.onCompletion?(isPresenting)
             }
         }
-        return animator
     }
 }

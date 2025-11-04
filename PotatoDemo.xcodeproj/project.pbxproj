@@ -100,6 +100,7 @@
 		CF38F9F22EB8B500006EED81 /* NavigationTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF38F9E82EB8B500006EED81 /* NavigationTransitionAnimator.swift */; };
 		CF38F9F32EB8B500006EED81 /* ModalTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF38F9E52EB8B500006EED81 /* ModalTransitionAnimator.swift */; };
 		CF38F9F52EB8B538006EED81 /* ModalPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF38F9F42EB8B538006EED81 /* ModalPresentationController.swift */; };
+		CFEBB1042EB9961C006CC969 /* NormalModalTransitionAnimationConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFEBB1032EB9961C006CC969 /* NormalModalTransitionAnimationConfig.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -201,6 +202,7 @@
 		CF38F9E92EB8B500006EED81 /* NavigationTransitionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationTransitionDelegate.swift; sourceTree = "<group>"; };
 		CF38F9EB2EB8B500006EED81 /* PanGesture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanGesture.swift; sourceTree = "<group>"; };
 		CF38F9F42EB8B538006EED81 /* ModalPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalPresentationController.swift; sourceTree = "<group>"; };
+		CFEBB1032EB9961C006CC969 /* NormalModalTransitionAnimationConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NormalModalTransitionAnimationConfig.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -454,6 +456,7 @@
 				CF38F9F42EB8B538006EED81 /* ModalPresentationController.swift */,
 				CF38F9E52EB8B500006EED81 /* ModalTransitionAnimator.swift */,
 				CF38F9E62EB8B500006EED81 /* ModalTransitionDelegate.swift */,
+				CFEBB1032EB9961C006CC969 /* NormalModalTransitionAnimationConfig.swift */,
 			);
 			path = ModalTransition;
 			sourceTree = "<group>";
@@ -617,6 +620,7 @@
 				5BC12362223A93A300953C61 /* PoDrawBoardView.swift in Sources */,
 				5BC122E92238AA2800953C61 /* PushOrPopAnimator.swift in Sources */,
 				5BC123D6223B75CD00953C61 /* MenuViewController.swift in Sources */,
+				CFEBB1042EB9961C006CC969 /* NormalModalTransitionAnimationConfig.swift in Sources */,
 				5BC122C72238A9C500953C61 /* ViewController.swift in Sources */,
 				5BF0DE9122C8A70B006686AF /* PageViewController.swift in Sources */,
 				5BC122C52238A9C500953C61 /* AppDelegate.swift in Sources */,

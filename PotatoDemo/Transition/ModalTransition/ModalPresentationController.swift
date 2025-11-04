@@ -2,12 +2,18 @@ import UIKit
 
 class ModalPresentationController: UIPresentationController {
     
+    var percentHeight: CGFloat = 0.8
     var needDimming: Bool = false
     var dimmingColor: UIColor = UIColor(white: 0, alpha: 0.5)
     var allowsTapToDismiss: Bool = true
     var presentedViewFrame: ((_ container: UIView) -> CGRect)?
     
     private var dimmingView: UIView?
+    
+    override var frameOfPresentedViewInContainerView: CGRect {
+        let bounds = containerView?.bounds ?? .zero
+        return CGRect(x: 0, y: bounds.height * (1 - percentHeight), width: bounds.width, height: bounds.height * percentHeight)
+    }
     
     override func presentationTransitionWillBegin() {
         guard let containerView else { return }
@@ -49,7 +55,7 @@ class ModalPresentationController: UIPresentationController {
     
     override func containerViewWillLayoutSubviews() {
         guard let containerView else { return }
-        presentedView?.frame = presentedViewFrame?(containerView) ?? containerView.bounds
+//        presentedView?.frame = presentedViewFrame?(containerView) ?? containerView.bounds
     }
     
     // MARK: - Selectors

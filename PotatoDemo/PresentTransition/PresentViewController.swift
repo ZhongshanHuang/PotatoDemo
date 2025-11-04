@@ -10,7 +10,7 @@ import UIKit
 
 class PresentViewController: UIViewController {
     
-    var interactiveTransition: UIPercentDrivenInteractiveTransition?
+    let transitionDelegate = ModalTransitionDelegate()
     
     deinit {
         print("present deinit")
@@ -24,41 +24,67 @@ class PresentViewController: UIViewController {
         presentButton.setTitle("present", for: .normal)
         presentButton.frame = CGRect(x: 0, y: 0, width: 100, height: 30)
         presentButton.center = view.center
-        presentButton.addTarget(self, action: #selector(PresentViewController.presentAction(_:)), for: .touchUpInside)
+        presentButton.addTarget(self, action: #selector(PresentViewController.presentAction), for: .touchUpInside)
         view.addSubview(presentButton)
-        
-        
-//        let view1 = UIImageView(frame: CGRect(x: 0, y: 0, width: 200, height: 200))
-//        view1.center = view.center
-//        view1.backgroundColor = UIColor.red
-////        view1.layer.shadowPath = CGPath(rect: CGRect(x: 0, y: 0, width: 200, height: 200), transform: nil)
-////        view1.layer.shadowColor = UIColor.black.cgColor
-////        view1.layer.shadowOffset = CGSize(width: -1, height: 0)
-////        view1.layer.shadowOpacity = 0.6
-//        view.addSubview(view1)
-//        
-//        
-////        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-////            view1.center.y += 100
-////        }
-//        
-//        let view2 = UIImageView(frame: CGRect(x: 0, y: 0, width: 200, height: 200))
-//        view2.backgroundColor = UIColor.yellow
-//        view2.layer.shadowPath = CGPath(rect: CGRect(x: 0, y: 0, width: 200, height: 200), transform: nil)
-//        view2.layer.shadowColor = UIColor.black.cgColor
-//        view2.layer.shadowOffset = CGSize(width: -4, height: 0)
-//        view2.layer.shadowOpacity = 1
-//        view1.addSubview(view2)
-        
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-//            view2.transform = CGAffineTransform(translationX: 100, y: 0)
-//        }
+        presentAction()
     }
     
-    @objc func presentAction(_ sender: AnyObject) {
+//    func prepareInteractivePresentation() {
+//        let modalTransitionDelegate = ModalTransitionDelegate()
+//        let controller = PresentationViewController()
+//        let presentationController = P(presentedViewController: controller, presenting: self)
+//        modalTransitionDelegate.set(presentationController: presentationController)
+//        
+//        let presentAnimator = PresentationControllerAnimator(finalFrame: presentationController.frameOfPresentedViewInContainerView)
+//        presentAnimator.auxAnimation = { controller.animations(presenting: $0) }
+//        modalTransitionDelegate.set(animator: presentAnimator, for: .present)
+//        modalTransitionDelegate.set(animator: presentAnimator, for: .dismiss)
+//        
+//        modalTransitionDelegate.wire(
+//            viewController: self,
+//            with: .regular(.fromBottom),
+//            navigationAction: { self.present(controller, animated: true, completion: nil) }
+//        )
+//        
+//        presentAnimator.onDismissed = prepareInteractivePresentation
+//        presentAnimator.onPresented = {
+//            modalTransitionDelegate.wire(
+//                viewController: controller,
+//                with: .regular(.fromTop),
+//                navigationAction: {
+//                    controller.dismiss(animated: true, completion: nil)
+//            })
+//        }
+//        controller.transitioningDelegate = modalTransitionDelegate
+//        controller.modalPresentationStyle = .custom
+//    }
+    
+    @objc func presentAction() {
         let vc = DismissViewController()
-        vc.transitioningDelegate = self
-        present(vc, animated: true, completion: nil)
+        vc.transitioningDelegate = transitionDelegate
+        vc.modalPresentationStyle = .custom
+        
+        let presentConfig = NormalModalTransitionAnimationConfig()
+        presentConfig.onCompletion = { [unowned self] _ in
+            transitionDelegate.addPanGesture(to: vc.view, with: .regular(.fromTop)) {
+                vc.dismiss(animated: true)
+            }
+        }
+        transitionDelegate.set(animatorConfig: presentConfig, for: .present)
+        
+        let dismissConfig = NormalModalTransitionAnimationConfig()
+        dismissConfig.onCompletion = { [unowned self] _ in
+            transitionDelegate.addPanGesture(to: view, with: .regular(.fromBottom)) {
+                self.present(vc, animated: true, completion: nil)
+            }
+        }
+        transitionDelegate.set(animatorConfig: dismissConfig, for: .dismiss)
+        transitionDelegate.addPanGesture(to: view, with: .regular(.fromBottom)) { [unowned self] in
+            self.present(vc, animated: true, completion: nil)
+        }
+        
+        transitionDelegate.presentationController = ModalPresentationController(presentedViewController: vc, presenting: self)
+//        present(vc, animated: true, completion: nil)
     }
 }
 

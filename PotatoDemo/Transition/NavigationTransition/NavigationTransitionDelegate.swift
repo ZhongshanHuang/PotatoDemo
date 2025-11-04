@@ -5,7 +5,7 @@ public class NavigationTransitionDelegate: NSObject {
     private let interactiveController = TransitionInteractiveController()
     
     public func addPanGesture(to viewController: UIViewController, with panType: PanGestureType, beginWhen: @escaping (() -> Bool) = { true }) {
-        interactiveController.addPanGesture(to: viewController, with: panType)
+        interactiveController.addPanGesture(to: viewController.view, with: panType)
         interactiveController.navigationAction = {
             viewController.navigationController?.popViewController(animated: true)
         }

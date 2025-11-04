@@ -14,13 +14,18 @@ class DismissViewController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = UIColor.purple
+        
+        let tableView = UITableView(frame: view.bounds, style: .plain)
+        tableView.dataSource = self
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        view.addSubview(tableView)
+        
         let dismissButton = UIButton(type: .system)
         dismissButton.setTitle("dismiss", for: .normal)
         dismissButton.frame = CGRect(x: 0, y: 0, width: 100, height: 30)
         dismissButton.center = view.center
         dismissButton.addTarget(self, action: #selector(DismissViewController.dismissAction(_:)), for: .touchUpInside)
         view.addSubview(dismissButton)
-        
     }
     
     @objc func dismissAction(_ sender: AnyObject) {
@@ -30,4 +35,18 @@ class DismissViewController: UIViewController {
     deinit {
         print("dismiss deinit")
     }
+}
+
+extension DismissViewController: UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        50
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        cell.textLabel?.text = "\(indexPath.row)"
+        return cell
+    }
+    
 }

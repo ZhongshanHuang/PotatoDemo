@@ -3,7 +3,7 @@ import UIKit
 open class TransitionInteractiveController: UIPercentDrivenInteractiveTransition {
 
     // MARK: - Private
-    private weak var viewController: UIViewController?
+    private weak var panGestureContainer: UIView?
     private var gestureRecognizer: UIPanGestureRecognizer?
     private var shouldCompleteTransition = false
     
@@ -27,20 +27,23 @@ open class TransitionInteractiveController: UIPercentDrivenInteractiveTransition
     
     deinit {
         if let gestureRecognizer = gestureRecognizer {
-            viewController?.view.removeGestureRecognizer(gestureRecognizer)
+            panGestureContainer?.removeGestureRecognizer(gestureRecognizer)
         }
     }
     
     /// Sets the viewController to be the one in charge of handling the swipe transition.
     ///
     /// - Parameter viewController: `UIViewController` in charge of the the transition.
-    open func addPanGesture(to viewController: UIViewController, with panType: PanGestureType) {
-        self.viewController = viewController
+    open func addPanGesture(to view: UIView, with panType: PanGestureType) {
+        if let gestureRecognizer = gestureRecognizer {
+            panGestureContainer?.removeGestureRecognizer(gestureRecognizer)
+        }
+        self.panGestureContainer = view
         gestureRecognizer = TransitionPanGestureFactory.create(with: panType)
         gestureRecognizer?.addTarget(self, action: #selector(handle(_:)))
         gestureRecognizer?.delegate = self
         gestureRecognizer?.isEnabled = isEnabled
-        self.viewController?.view.addGestureRecognizer(gestureRecognizer!)
+        self.panGestureContainer?.addGestureRecognizer(gestureRecognizer!)
     }
     
     /// Handles the swiping with progress
@@ -80,6 +83,9 @@ open class TransitionInteractiveController: UIPercentDrivenInteractiveTransition
 extension TransitionInteractiveController: UIGestureRecognizerDelegate {
     
     open func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        if let scrollView = otherGestureRecognizer.view as? UIScrollView {
+            return scrollView.contentOffset.y <= 0
+        }
         return true
     }
 }
