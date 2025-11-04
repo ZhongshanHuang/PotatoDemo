@@ -59,6 +59,7 @@ extension ModalTransitionAnimator: UIViewControllerAnimatedTransitioning {
         
         let modalView: UIView = isPresenting ? toViewController.view : fromViewController.view
         if isPresenting {
+            modalView.transform = .identity
             modalView.frame = toFrame
         }
         config.layout(presenting: isPresenting, modalView: modalView, in: containerView)
