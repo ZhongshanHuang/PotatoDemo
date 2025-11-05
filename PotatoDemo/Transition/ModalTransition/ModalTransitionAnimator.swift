@@ -4,26 +4,25 @@ public protocol ModalTransitionAnimationConfig {
     var duration: TimeInterval { get }
     var auxAnimation: ((Bool) -> Void)? { get }
     var onCompletion: ((Bool) -> Void)? { get }
-    func layout(presenting: Bool, modalView: UIView, in container: UIView)
-    func animate(presenting: Bool, modalView: UIView, in container: UIView)
+    func layout(presenting: Bool, fromView: UIView, toView: UIView, in container: UIView)
+    func animate(presenting: Bool, fromView: UIView, toView: UIView, in container: UIView)
 }
 
 extension ModalTransitionAnimationConfig {
     var duration: TimeInterval { 0.3 }
     var auxAnimation: ((Bool) -> Void)? { nil }
     var onCompletion: ((Bool) -> Void)? { nil }
-    func layout(presenting: Bool, modalView: UIView, in container: UIView) {
+    func layout(presenting: Bool, fromView: UIView, toView: UIView, in container: UIView) {
         if presenting {
-            container.addSubview(modalView)
-            modalView.transform = .identity.translatedBy(x: 0, y: modalView.bounds.height)
+            toView.transform = .identity.translatedBy(x: 0, y: toView.bounds.height)
         }
     }
     
-    func animate(presenting: Bool, modalView: UIView, in container: UIView) {
+    func animate(presenting: Bool, fromView: UIView, toView: UIView, in container: UIView) {
         if presenting {
-            modalView.transform = .identity
+            toView.transform = .identity
         } else {
-            modalView.transform = .identity.translatedBy(x: 0, y: modalView.bounds.height)
+            fromView.transform = .identity.translatedBy(x: 0, y: fromView.bounds.height)
         }
     }
 }
@@ -49,24 +48,24 @@ extension ModalTransitionAnimator: UIViewControllerAnimatedTransitioning {
         }
 
         let containerView = transitionContext.containerView
-        let isPresenting = (toViewController.presentingViewController === fromViewController)
+        let fromView: UIView = fromViewController.view
+        let toView: UIView = toViewController.view
         
-        let fromFrame = transitionContext.initialFrame(for: fromViewController)
-        let toFrame = transitionContext.finalFrame(for: toViewController)
-        print(fromFrame, toFrame)
-//        fromView.frame = fromFrame
-//        toView.frame = toFrame
-        
-        let modalView: UIView = isPresenting ? toViewController.view : fromViewController.view
+        let isPresenting = toViewController.presentingViewController === fromViewController
         if isPresenting {
-            modalView.transform = .identity
-            modalView.frame = toFrame
+            let proposedFrame = transitionContext.finalFrame(for: toViewController)
+            toView.transform = .identity
+            toView.frame = proposedFrame
+            containerView.addSubview(toView)
+        } else {
+            if fromViewController.modalPresentationStyle == .fullScreen {
+                containerView.insertSubview(toViewController.view, belowSubview: fromViewController.view)
+            }
         }
-        config.layout(presenting: isPresenting, modalView: modalView, in: containerView)
-
-        let duration = transitionDuration(using: transitionContext)
-        UIView.animate(withDuration: duration, delay: 0, options: .curveLinear) {
-            self.config.animate(presenting: isPresenting, modalView: modalView, in: containerView)
+        
+        config.layout(presenting: isPresenting, fromView: fromView, toView: toView, in: containerView)
+        UIView.animate(withDuration: transitionDuration(using: transitionContext), delay: 0, options: .curveLinear) {
+            self.config.animate(presenting: isPresenting, fromView: fromView, toView: toView, in: containerView)
         } completion: { _ in
             let complete = !transitionContext.transitionWasCancelled
             transitionContext.completeTransition(complete)

@@ -19,6 +19,13 @@ class DismissViewController: UIViewController {
         tableView.dataSource = self
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         view.addSubview(tableView)
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            tableView.topAnchor.constraint(equalTo: view.topAnchor),
+            tableView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            tableView.rightAnchor.constraint(equalTo: view.rightAnchor)
+        ])
         
         let dismissButton = UIButton(type: .system)
         dismissButton.setTitle("dismiss", for: .normal)
@@ -35,6 +42,7 @@ class DismissViewController: UIViewController {
     deinit {
         print("dismiss deinit")
     }
+    
 }
 
 extension DismissViewController: UITableViewDataSource {
