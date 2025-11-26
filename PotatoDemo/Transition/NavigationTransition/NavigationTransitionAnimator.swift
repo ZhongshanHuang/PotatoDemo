@@ -4,15 +4,36 @@ public typealias AuxAnimation = (closure: () -> Void, relativeDelay: Double)
 
 public protocol NavigationTransitionAnimationConfig {
     var duration: TimeInterval { get }
-    var auxAnimations: (Bool) -> [AuxAnimation] { get }
+    var auxAnimations: ((Bool) -> [AuxAnimation])? { get }
+    var onCompletion: ((Bool) -> Void)? { get }
     
     func layout(presenting: Bool, fromView: UIView, toView: UIView, in container: UIView)
     func animations(presenting: Bool, fromView: UIView, toView: UIView, in container: UIView)
 }
 
-final class NavigationTransitionAnimator: NSObject {
+public extension NavigationTransitionAnimationConfig {
+    var duration: TimeInterval { 0.35 }
+    var auxAnimations: ((Bool) -> [AuxAnimation])? { nil }
+    var onCompletion: ((Bool) -> Void)? { nil }
     
+    func layout(presenting: Bool, fromView: UIView, toView: UIView, in container: UIView) {
+        if presenting {
+            toView.transform = .identity.translatedBy(x: toView.bounds.width, y: 0)
+        }
+    }
+    
+    func animations(presenting: Bool, fromView: UIView, toView: UIView, in container: UIView) {
+        if presenting {
+            toView.transform = .identity
+        } else {
+            fromView.transform = .identity.translatedBy(x: fromView.bounds.width, y: 0)
+        }
+    }
+}
+
+final class NavigationTransitionAnimator: NSObject {
     private let config: NavigationTransitionAnimationConfig
+    private var animator: UIViewPropertyAnimator?
     
     public init(config: NavigationTransitionAnimationConfig) {
         self.config = config
@@ -27,9 +48,17 @@ extension NavigationTransitionAnimator: UIViewControllerAnimatedTransitioning {
     }
     
     public func animateTransition(using transitionContext: any UIViewControllerContextTransitioning) {
+        transitionAnimator(using: transitionContext).startAnimation()
+    }
+    
+    public func interruptibleAnimator(using transitionContext: any UIViewControllerContextTransitioning) -> any UIViewImplicitlyAnimating {
+        animator ?? transitionAnimator(using: transitionContext)
+    }
+    
+    private func transitionAnimator(using transitionContext: UIViewControllerContextTransitioning) -> UIViewImplicitlyAnimating {
         guard let fromViewController = transitionContext.viewController(forKey: .from),
             let toViewController = transitionContext.viewController(forKey: .to) else {
-            return
+            return UIViewPropertyAnimator()
         }
         
         let containerView = transitionContext.containerView
@@ -42,43 +71,60 @@ extension NavigationTransitionAnimator: UIViewControllerAnimatedTransitioning {
             isPush = toIndex > fromIndex
         }
         
+        if isPush {
+            toView.transform = .identity
+            containerView.addSubview(toView)
+        } else {
+            containerView.insertSubview(toView, belowSubview: fromView)
+        }
+        
         let fromFrame = transitionContext.initialFrame(for: fromViewController)
         let toFrame = transitionContext.finalFrame(for: toViewController)
         
         fromView.frame = fromFrame
         toView.frame = toFrame
         
+        
+        
         config.layout(presenting: isPush, fromView: fromView,
                                   toView: toView, in: containerView)
         
         let duration = transitionDuration(using: transitionContext)
-        let auxAnimations = config.auxAnimations(isPush)
-        
-        UIView.animateKeyframes(withDuration: duration, delay: 0.0, options: [], animations: {
-            
-            UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 1, animations: {
-                self.config.animations(presenting: isPush,fromView: fromView,
-                                                   toView: toView, in: containerView)
-            })
-            
-            for animation in auxAnimations {
-                let relativeDuration = duration - animation.relativeDelay * duration
-                UIView.addKeyframe(withRelativeStartTime: animation.relativeDelay,
-                                   relativeDuration: relativeDuration,
-                                   animations: animation.closure)
+        let animator = UIViewPropertyAnimator(duration: duration, curve: .linear)
+        animator.addAnimations {
+            UIView.animateKeyframes(withDuration: duration, delay: 0.0, options: [], animations: {
+                
+                UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 1, animations: {
+                    self.config.animations(presenting: isPush,fromView: fromView,
+                                                       toView: toView, in: containerView)
+                })
+                
+                if let auxAnimations = self.config.auxAnimations?(isPush) {
+                    for animation in auxAnimations {
+                        let relativeDuration = duration - animation.relativeDelay * duration
+                        UIView.addKeyframe(withRelativeStartTime: animation.relativeDelay,
+                                           relativeDuration: relativeDuration,
+                                           animations: animation.closure)
+                    }
+                }
+            }) { _ in
             }
-        }) { finished in
-            let wasCancelled = transitionContext.transitionWasCancelled
-            transitionContext.completeTransition(!wasCancelled)
         }
+        animator.addCompletion { position in
+            switch position {
+            case .end:
+              transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
+                self.config.onCompletion?(isPush)
+            default:
+              transitionContext.completeTransition(false)
+            }
+        }
+        self.animator = animator
+        animator.addCompletion { _ in
+            self.animator = nil
+        }
+        animator.isUserInteractionEnabled = true
+        return animator
     }
-    
-//    public func interruptibleAnimator(using transitionContext: any UIViewControllerContextTransitioning) -> any UIViewImplicitlyAnimating {
-//        
-//    }
-//
-//    public func animationEnded(_ transitionCompleted: Bool) {
-//        
-//    }
     
 }

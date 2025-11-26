@@ -3,12 +3,11 @@ import UIKit
 public class NavigationTransitionDelegate: NSObject {
     private var animationConfigs = [UINavigationController.Operation: any NavigationTransitionAnimationConfig]()
     private let interactiveController = TransitionInteractiveController()
+    public var interactiveGestureRecognizer: UIGestureRecognizer? { interactiveController.gestureRecognizer }
     
-    public func addPanGesture(to viewController: UIViewController, with panType: PanGestureType, beginWhen: @escaping (() -> Bool) = { true }) {
-        interactiveController.addPanGesture(to: viewController.view, with: panType)
-        interactiveController.navigationAction = {
-            viewController.navigationController?.popViewController(animated: true)
-        }
+    public func addPanGesture(to viewController: UIViewController, with panType: PanGestureType, delegate: (any UIGestureRecognizerDelegate)? = nil, navigationAction: @escaping () -> Void, beginWhen: @escaping (() -> Bool) = { true }) {
+        interactiveController.addPanGesture(to: viewController.view, with: panType, delegate: delegate)
+        interactiveController.navigationAction = navigationAction
         interactiveController.shouldBeginTransition = beginWhen
     }
     

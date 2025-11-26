@@ -21,7 +21,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.backgroundColor = UIColor.white
         
         let vc = ViewController()
-        let center = PoNavigationController(rootViewController: vc)
+        let center = NavigationController(rootViewController: vc)
+        window?.rootViewController = center
 //
 //        let vc1 = ViewController()
 //        let nav = PoNavigationController(rootViewController: vc1)
@@ -29,15 +30,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        let root = UITabBarController()
 //        root.setViewControllers([center, nav], animated: false)
 //
-        let left = UIViewController()
-        left.view.backgroundColor = UIColor.red
-
-        let right = UIViewController()
-        right.view.backgroundColor = UIColor.yellow
-
-        let sliderController = PoSideMenuController(center: center, left: left)
-        
-        window?.rootViewController = sliderController
+//        let left = UIViewController()
+//        left.view.backgroundColor = UIColor.red
+//
+//        let right = UIViewController()
+//        right.view.backgroundColor = UIColor.yellow
+//
+//        let sliderController = PoSideMenuController(center: center, left: left)
+//        window?.rootViewController = sliderController
         window?.makeKeyAndVisible()
         
         return true

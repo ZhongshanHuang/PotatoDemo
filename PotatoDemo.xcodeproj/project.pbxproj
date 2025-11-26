@@ -100,6 +100,7 @@
 		CF38F9F22EB8B500006EED81 /* NavigationTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF38F9E82EB8B500006EED81 /* NavigationTransitionAnimator.swift */; };
 		CF38F9F32EB8B500006EED81 /* ModalTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF38F9E52EB8B500006EED81 /* ModalTransitionAnimator.swift */; };
 		CF38F9F52EB8B538006EED81 /* ModalPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF38F9F42EB8B538006EED81 /* ModalPresentationController.swift */; };
+		CF6760A32ED6AB72002F1CC0 /* NormalNavigationTransitionAnimationConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6760A22ED6AB72002F1CC0 /* NormalNavigationTransitionAnimationConfig.swift */; };
 		CFEBB1042EB9961C006CC969 /* NormalModalTransitionAnimationConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFEBB1032EB9961C006CC969 /* NormalModalTransitionAnimationConfig.swift */; };
 /* End PBXBuildFile section */
 
@@ -202,6 +203,7 @@
 		CF38F9E92EB8B500006EED81 /* NavigationTransitionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationTransitionDelegate.swift; sourceTree = "<group>"; };
 		CF38F9EB2EB8B500006EED81 /* PanGesture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanGesture.swift; sourceTree = "<group>"; };
 		CF38F9F42EB8B538006EED81 /* ModalPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalPresentationController.swift; sourceTree = "<group>"; };
+		CF6760A22ED6AB72002F1CC0 /* NormalNavigationTransitionAnimationConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NormalNavigationTransitionAnimationConfig.swift; sourceTree = "<group>"; };
 		CFEBB1032EB9961C006CC969 /* NormalModalTransitionAnimationConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NormalModalTransitionAnimationConfig.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -466,6 +468,7 @@
 			children = (
 				CF38F9E82EB8B500006EED81 /* NavigationTransitionAnimator.swift */,
 				CF38F9E92EB8B500006EED81 /* NavigationTransitionDelegate.swift */,
+				CF6760A22ED6AB72002F1CC0 /* NormalNavigationTransitionAnimationConfig.swift */,
 			);
 			path = NavigationTransition;
 			sourceTree = "<group>";
@@ -647,6 +650,7 @@
 				5BC122F322394E6700953C61 /* WaterFallHeader.swift in Sources */,
 				5BF0DE8D22C85BC0006686AF /* PoPageViewController.swift in Sources */,
 				924E1AC22330D8610036DB4F /* PoNavigationAnimator1.swift in Sources */,
+				CF6760A32ED6AB72002F1CC0 /* NormalNavigationTransitionAnimationConfig.swift in Sources */,
 				5BC122E22238AA2800953C61 /* PoPresentOrDismissAnimator.swift in Sources */,
 				5BC1235E223A861A00953C61 /* LayerAnimationViewController.swift in Sources */,
 				5BC122ED2238E70D00953C61 /* PoCollectionViewMasonryLayout.swift in Sources */,

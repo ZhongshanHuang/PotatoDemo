@@ -27,17 +27,17 @@ class DrawViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        if let nav = navigationController as? NavigationController {
-            nav.navigationDelegate.panGesture.isEnabled = false
-        }
+//        if let nav = navigationController as? NavigationController {
+//            nav.navigationDelegate.panGesture.isEnabled = false
+//        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        if let nav = navigationController as? NavigationController {
-            nav.navigationDelegate.panGesture.isEnabled = true
-        }
+//        if let nav = navigationController as? NavigationController {
+//            nav.navigationDelegate.panGesture.isEnabled = true
+//        }
     }
 
     /*

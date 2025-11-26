@@ -8,6 +8,7 @@ public class ModalTransitionDelegate: NSObject {
     
     private var animationConfigs = [ModalOperation: any ModalTransitionAnimationConfig]()
     private let interactiveController = TransitionInteractiveController()
+    public var interactiveGestureRecognizer: UIGestureRecognizer? { interactiveController.gestureRecognizer }
     public var presentationController: UIPresentationController?
     
     public func addPanGesture(to view: UIView, with panType: PanGestureType, navigationAction: @escaping () -> Void, beginWhen: @escaping (() -> Bool) = { true }) {
