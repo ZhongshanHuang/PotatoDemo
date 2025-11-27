@@ -2,7 +2,7 @@ import UIKit
 
 public typealias AuxAnimation = (closure: () -> Void, relativeDelay: Double)
 
-public protocol NavigationTransitionAnimationConfig {
+public protocol NavigationTransitionAnimationConfigurable {
     var duration: TimeInterval { get }
     var auxAnimations: ((Bool) -> [AuxAnimation])? { get }
     var onCompletion: ((Bool) -> Void)? { get }
@@ -11,8 +11,8 @@ public protocol NavigationTransitionAnimationConfig {
     func animations(presenting: Bool, fromView: UIView, toView: UIView, in container: UIView)
 }
 
-public extension NavigationTransitionAnimationConfig {
-    var duration: TimeInterval { 0.35 }
+public extension NavigationTransitionAnimationConfigurable {
+    var duration: TimeInterval { 0.25 }
     var auxAnimations: ((Bool) -> [AuxAnimation])? { nil }
     var onCompletion: ((Bool) -> Void)? { nil }
     
@@ -32,10 +32,10 @@ public extension NavigationTransitionAnimationConfig {
 }
 
 final class NavigationTransitionAnimator: NSObject {
-    private let config: NavigationTransitionAnimationConfig
+    private let config: NavigationTransitionAnimationConfigurable
     private var animator: UIViewPropertyAnimator?
     
-    public init(config: NavigationTransitionAnimationConfig) {
+    public init(config: NavigationTransitionAnimationConfigurable) {
         self.config = config
     }
 }

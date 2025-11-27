@@ -6,18 +6,18 @@ public class ModalTransitionDelegate: NSObject {
         case dismiss
     }
     
-    private var animationConfigs = [ModalOperation: any ModalTransitionAnimationConfig]()
+    private var animationConfigs = [ModalOperation: any ModalTransitionAnimationConfigurable]()
     private let interactiveController = TransitionInteractiveController()
     public var interactiveGestureRecognizer: UIGestureRecognizer? { interactiveController.gestureRecognizer }
     public var presentationController: UIPresentationController?
     
-    public func addPanGesture(to view: UIView, with panType: PanGestureType, navigationAction: @escaping () -> Void, beginWhen: @escaping (() -> Bool) = { true }) {
-        interactiveController.addPanGesture(to: view, with: panType)
+    public func addPanGesture(to view: UIView, with panType: PanGestureType, delegate: (any UIGestureRecognizerDelegate)? = nil, navigationAction: @escaping () -> Void, beginWhen: @escaping (() -> Bool) = { true }) {
+        interactiveController.addPanGesture(to: view, with: panType, delegate: delegate)
         interactiveController.navigationAction = navigationAction
         interactiveController.shouldBeginTransition = beginWhen
     }
     
-    public func set(animatorConfig: any ModalTransitionAnimationConfig, for operation: ModalOperation) {
+    public func set(animatorConfig: any ModalTransitionAnimationConfigurable, for operation: ModalOperation) {
         animationConfigs[operation] = animatorConfig
     }
 

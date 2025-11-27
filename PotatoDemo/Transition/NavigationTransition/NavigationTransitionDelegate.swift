@@ -1,7 +1,7 @@
 import UIKit
 
 public class NavigationTransitionDelegate: NSObject {
-    private var animationConfigs = [UINavigationController.Operation: any NavigationTransitionAnimationConfig]()
+    private var animationConfigs = [UINavigationController.Operation: any NavigationTransitionAnimationConfigurable]()
     private let interactiveController = TransitionInteractiveController()
     public var interactiveGestureRecognizer: UIGestureRecognizer? { interactiveController.gestureRecognizer }
     
@@ -11,7 +11,7 @@ public class NavigationTransitionDelegate: NSObject {
         interactiveController.shouldBeginTransition = beginWhen
     }
     
-    public func set(animatorConfig: any NavigationTransitionAnimationConfig, for operation: UINavigationController.Operation) {
+    public func set(animatorConfig: any NavigationTransitionAnimationConfigurable, for operation: UINavigationController.Operation) {
         animationConfigs[operation] = animatorConfig
     }
 

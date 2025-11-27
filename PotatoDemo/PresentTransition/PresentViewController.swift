@@ -66,7 +66,7 @@ class PresentViewController: UIViewController {
         
         let presentConfig = NormalModalTransitionAnimationConfig()
         presentConfig.onCompletion = { [unowned self] _ in
-            transitionDelegate.addPanGesture(to: vc.view, with: .regular(.fromTop)) {
+            transitionDelegate.addPanGesture(to: vc.view, with: .regular(.fromTop), delegate: self) {
                 vc.dismiss(animated: true)
             }
         }
@@ -98,5 +98,15 @@ extension PresentViewController: UIViewControllerTransitioningDelegate {
     
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return PoPresentOrDismissAnimator(type: .dismiss)
+    }
+}
+
+extension PresentViewController: UIGestureRecognizerDelegate {
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        if let scrollView = otherGestureRecognizer.view as? UIScrollView {
+            return scrollView.contentOffset.y <= 0
+        }
+        return true
     }
 }

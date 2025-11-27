@@ -1,6 +1,6 @@
 import UIKit
 
-public protocol ModalTransitionAnimationConfig {
+public protocol ModalTransitionAnimationConfigurable {
     var duration: TimeInterval { get }
     var auxAnimation: ((Bool) -> Void)? { get }
     var onCompletion: ((Bool) -> Void)? { get }
@@ -8,8 +8,8 @@ public protocol ModalTransitionAnimationConfig {
     func animate(presenting: Bool, fromView: UIView, toView: UIView, in container: UIView)
 }
 
-public extension ModalTransitionAnimationConfig {
-    var duration: TimeInterval { 0.35 }
+public extension ModalTransitionAnimationConfigurable {
+    var duration: TimeInterval { 0.25 }
     var auxAnimation: ((Bool) -> Void)? { nil }
     var onCompletion: ((Bool) -> Void)? { nil }
     func layout(presenting: Bool, fromView: UIView, toView: UIView, in container: UIView) {
@@ -28,10 +28,10 @@ public extension ModalTransitionAnimationConfig {
 }
 
 final class ModalTransitionAnimator: NSObject {
-    private let config: any ModalTransitionAnimationConfig
+    private let config: any ModalTransitionAnimationConfigurable
     private var animator: UIViewPropertyAnimator?
     
-    init(config: any ModalTransitionAnimationConfig) {
+    init(config: any ModalTransitionAnimationConfigurable) {
         self.config = config
     }
 }

@@ -1,5 +1,5 @@
 import UIKit
 
-class NormalModalTransitionAnimationConfig: ModalTransitionAnimationConfig {
+class NormalModalTransitionAnimationConfig: ModalTransitionAnimationConfigurable {
     var onCompletion: ((Bool) -> Void)?
 }
