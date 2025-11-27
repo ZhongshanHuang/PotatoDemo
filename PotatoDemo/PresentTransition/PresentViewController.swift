@@ -105,7 +105,13 @@ extension PresentViewController: UIGestureRecognizerDelegate {
     
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         if let scrollView = otherGestureRecognizer.view as? UIScrollView {
-            return scrollView.contentOffset.y <= 0
+            if scrollView.contentOffset.y <= 0, scrollView.panGestureRecognizer.velocity(in: scrollView).y > 0 {
+                scrollView.panGestureRecognizer.isEnabled = false
+                scrollView.panGestureRecognizer.isEnabled = true
+                return true
+            } else {
+                return false
+            }
         }
         return true
     }
